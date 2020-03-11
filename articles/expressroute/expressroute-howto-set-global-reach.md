@@ -21,6 +21,7 @@ Before you start configuration, confirm the following:
 
 * You understand ExpressRoute circuit provisioning [workflows](expressroute-workflows.md).
 * Your ExpressRoute circuits are in a provisioned state.
+* Your ExpressRoute circuits are in different peering locations.
 * Azure private peering is configured on your ExpressRoute circuits.
 * If you want to run PowerShell locally, verify that the latest version of Azure PowerShell is installed on your computer.
 
@@ -102,7 +103,7 @@ When the previous operation completes, you will have connectivity between your o
 
 Use the following command to verify the configuration on the circuit where the configuration was made (for example, circuit 1 in the previous example).
 ```azurepowershell-interactive
-$ckt1 = Get-AzExpressRouteCircuit -Name "Your_circuit_1_name" -ResourceGroupName "Your_resource_group"
+$ckt_1 = Get-AzExpressRouteCircuit -Name "Your_circuit_1_name" -ResourceGroupName "Your_resource_group"
 ```
 
 If you simply run *$ckt1* in PowerShell, you see *CircuitConnectionStatus* in the output. It tells you whether the connectivity is established, "Connected", or "Disconnected". 
@@ -112,7 +113,7 @@ If you simply run *$ckt1* in PowerShell, you see *CircuitConnectionStatus* in th
 To disable connectivity between your on-premises networks, run the commands against the circuit where the configuration was made (for example, circuit 1 in the previous example).
 
 ```azurepowershell-interactive
-$ckt1 = Get-AzExpressRouteCircuit -Name "Your_circuit_1_name" -ResourceGroupName "Your_resource_group"
+$ckt_1 = Get-AzExpressRouteCircuit -Name "Your_circuit_1_name" -ResourceGroupName "Your_resource_group"
 Remove-AzExpressRouteCircuitConnectionConfig -Name "Your_connection_name" -ExpressRouteCircuit $ckt_1
 Set-AzExpressRouteCircuit -ExpressRouteCircuit $ckt_1
 ```
